@@ -1,0 +1,88 @@
+2025-11-30 10:00:01 [INFO] [AUTH] User 'admin' logged in successfully
+2025-11-30 10:00:05 [ERROR] [AUTH] Login failed for user 'root' from IP 192.168.1.10
+2025-11-30 10:00:08 [WARNING] [NET] High latency detected: 2200ms from IP 10.0.0.5
+2025-11-30 10:00:12 [INFO] [APP] Scheduled job 'CleanupTask' started
+2025-11-30 10:00:15 [ERROR] [CONN] Socket connection reset by peer
+2025-11-30 10:00:20 [INFO] [NET] Connection established with server 172.16.0.4
+2025-11-30 10:00:25 [CRITICAL] [SYS] Disk space critically low on /dev/sda1 (3% left)
+2025-11-30 10:00:30 [ERROR] [DB] Query execution failed: SQLSTATE 08001
+2025-11-30 10:00:35 [INFO] [AUTH] User 'fatih' logged out
+2025-11-30 10:00:40 [WARNING] [APP] Unexpected API latency: 1800ms
+2025-11-30 10:00:45 [ERROR] [AUTH] Multiple failed login attempts detected for IP 192.168.1.22
+2025-11-30 10:00:50 [INFO] [NET] Packet loss detected: 2.3%
+2025-11-30 10:00:53 [INFO] [APP] API request processed for user 'emre'
+2025-11-30 10:00:58 [ERROR] [CONN] Connection timeout while connecting to DB server
+2025-11-30 10:01:03 [WARNING] [SYS] Memory usage high: 92%
+2025-11-30 10:01:10 [INFO] [AUTH] User 'alperen' logged in successfully
+2025-11-30 10:01:14 [ERROR] [NET] DNS resolution failed for host api.server.com
+2025-11-30 10:01:19 [INFO] [APP] Background worker executed 'ReportTask'
+2025-11-30 10:01:24 [ERROR] [DB] Foreign key constraint violation occurred
+2025-11-30 10:01:29 [CRITICAL] [SYS] CPU temperature exceeded safe threshold
+2025-11-30 10:01:34 [INFO] [NET] Incoming connection from IP 192.168.1.88
+2025-11-30 10:01:38 [WARNING] [APP] Slow response detected for endpoint /auth
+2025-11-30 10:01:43 [ERROR] [AUTH] Login failed for user 'guest'
+2025-11-30 10:01:47 [INFO] [APP] Cache refreshed successfully
+2025-11-30 10:01:52 [ERROR] [CONN] SSL handshake failed
+2025-11-30 10:01:57 [INFO] [NET] Network interface eth0 is up
+2025-11-30 10:02:02 [WARNING] [SYS] High load average detected
+2025-11-30 10:02:09 [ERROR] [DB] Deadlock detected while running transaction
+2025-11-30 10:02:14 [INFO] [AUTH] User 'admin' changed password
+2025-11-30 10:02:19 [ERROR] [APP] Illegal argument received in API request
+2025-11-30 10:02:24 [INFO] [NET] Ping to server 8.8.8.8 successful (42ms)
+2025-11-30 10:02:29 [WARNING] [CONN] Connection pool is exhausted
+2025-11-30 10:02:33 [ERROR] [SYS] System time drift detected
+2025-11-30 10:02:38 [INFO] [APP] User session refreshed for 'fatih'
+2025-11-30 10:02:42 [WARNING] [NET] High jitter detected: 35ms
+2025-11-30 10:02:48 [ERROR] [AUTH] Suspicious login attempt from IP 10.0.0.99
+2025-11-30 10:02:54 [INFO] [DB] Database snapshot completed
+2025-11-30 10:02:59 [CRITICAL] [SYS] Kernel panic detected
+2025-11-30 10:03:04 [WARNING] [APP] Deprecated API endpoint requested
+2025-11-30 10:03:09 [ERROR] [NET] Packet corruption detected
+2025-11-30 10:03:15 [INFO] [AUTH] User 'emre' logged in successfully
+2025-11-30 10:03:20 [ERROR] [DB] Unable to open database connection
+2025-11-30 10:03:25 [INFO] [APP] Scheduled job 'SyncTask' executed
+2025-11-30 10:03:31 [WARNING] [SYS] Swap memory usage high
+2025-11-30 10:03:36 [ERROR] [CONN] Remote host closed the connection unexpectedly
+2025-11-30 10:03:41 [INFO] [NET] Network throughput normal
+2025-11-30 10:03:46 [ERROR] [AUTH] Login failed for user 'test'
+2025-11-30 10:03:51 [CRITICAL] [DB] Database corruption detected!
+2025-11-30 10:03:56 [INFO] [APP] API request processed for user 'alperen'
+2025-11-30 10:04:01 [WARNING] [NET] High latency detected: 3100ms
+2025-11-30 10:04:06 [ERROR] [SYS] Failed to write to system log
+2025-11-30 10:04:11 [INFO] [AUTH] User 'admin' logged out
+2025-11-30 10:04:17 [WARNING] [APP] Missing required parameter in request
+2025-11-30 10:04:22 [ERROR] [CONN] Connection refused by target host
+2025-11-30 10:04:27 [INFO] [DB] Transaction completed successfully
+2025-11-30 10:04:33 [CRITICAL] [SYS] Out-of-memory error occurred
+2025-11-30 10:04:38 [WARNING] [NET] Unstable WiFi connection detected
+2025-11-30 10:04:43 [ERROR] [AUTH] Login failed for user 'root'
+2025-11-30 10:04:48 [INFO] [APP] Service 'EmailSender' started
+2025-11-30 10:04:54 [WARNING] [DB] Slow query detected (2400ms)
+2025-11-30 10:04:59 [ERROR] [SYS] Failed to allocate buffer
+2025-11-30 10:05:04 [INFO] [NET] Firewall rule updated successfully
+2025-11-30 10:05:10 [WARNING] [AUTH] Brute-force attempt suspected for IP 192.168.1.50
+2025-11-30 10:05:15 [INFO] [APP] User 'simai' uploaded a file
+2025-11-30 10:05:21 [ERROR] [CONN] Remote endpoint closed connection
+2025-11-30 10:05:27 [INFO] [DB] Database vacuum completed
+2025-11-30 10:05:33 [CRITICAL] [NET] Network interface failure detected
+2025-11-30 10:05:38 [WARNING] [SYS] CPU usage unusually high
+2025-11-30 10:05:43 [ERROR] [AUTH] Login failed for user 'guest'
+2025-11-30 10:05:48 [INFO] [APP] Cache refreshed
+2025-11-30 10:05:54 [WARNING] [CONN] Connection retry limit reached
+2025-11-30 10:05:59 [ERROR] [DB] Duplicate key violation
+2025-11-30 10:06:05 [INFO] [NET] DHCP lease renewed for IP 192.168.1.34
+2025-11-30 10:06:10 [CRITICAL] [SYS] Hardware failure detected on CPU1
+2025-11-30 10:06:15 [WARNING] [AUTH] Suspicious login pattern detected
+2025-11-30 10:06:20 [INFO] [APP] API request processed for user 'emre'
+2025-11-30 10:06:26 [ERROR] [CONN] Connection dropped unexpectedly
+2025-11-30 10:06:31 [INFO] [DB] Backup completed successfully
+2025-11-30 10:06:37 [WARNING] [NET] Bandwidth throttling detected
+2025-11-30 10:06:42 [ERROR] [AUTH] Login failed for user 'alperen'
+2025-11-30 10:06:47 [CRITICAL] [APP] Application crash detected!
+2025-11-30 10:06:53 [INFO] [SYS] System reboot scheduled
+2025-11-30 10:06:58 [WARNING] [CONN] Stale connection detected
+2025-11-30 10:07:03 [ERROR] [DB] Unable to commit transaction
+2025-11-30 10:07:08 [INFO] [NET] Interface eth1 activated
+2025-11-30 10:07:13 [WARNING] [APP] High payload request detected
+2025-11-30 10:07:19 [ERROR] [SYS] System clock synchronization failed
+2025-11-30 10:07:24 [INFO] [AUTH] User 'admin' logged in successfully
