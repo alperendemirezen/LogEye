@@ -1,8 +1,8 @@
 import java.util.concurrent.BlockingQueue;
 
 public class LogAnalyzer extends Thread{
-    private final BlockingQueue<String> queue;
-    private final BlockingQueue<AlertMessage> alertMessages;
+    private BlockingQueue<String> queue;
+    private BlockingQueue<AlertMessage> alertMessages;
 
     public LogAnalyzer(BlockingQueue<String> queue, BlockingQueue<AlertMessage> alertMessages){
         this.queue = queue;
@@ -11,17 +11,15 @@ public class LogAnalyzer extends Thread{
 
     @Override
     public void run(){
+        System.out.println("LogAnalyzer started...");
         while (true) {
-            String logLine = null;
             try {
-                logLine = queue.take();
+                String logLine = queue.take();
                 createAlert(logLine);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     public void createAlert(String logLine) throws InterruptedException{
