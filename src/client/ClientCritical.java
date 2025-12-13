@@ -1,3 +1,6 @@
+package client;
+
+import model.FilterOfClient;
 
 public class ClientCritical extends Client {
 
@@ -22,3 +25,14 @@ public class ClientCritical extends Client {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

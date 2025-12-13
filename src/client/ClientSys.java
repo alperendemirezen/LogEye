@@ -1,3 +1,6 @@
+package client;
+
+import model.FilterOfClient;
 
 public class ClientSys extends Client {
 
@@ -18,3 +21,17 @@ public class ClientSys extends Client {
         client.start();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,13 +1,18 @@
+package model;
+
 import javax.crypto.SecretKey;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.security.PublicKey;
 
 public class ConnectionOfClient {
     private final Socket socket;
-    private final FilterOfClient filter;
     private final OutputStream out;
+    private final BufferedWriter writer;
+    private final FilterOfClient filter;
     private PublicKey publicKey;
     private SecretKey sessionKey;
 
@@ -15,11 +20,9 @@ public class ConnectionOfClient {
         this.socket = socket;
         this.filter = filter;
         out = socket.getOutputStream();
+        writer = new BufferedWriter(new OutputStreamWriter(out));
     }
 
-    public PublicKey getPublicKey() {
-        return publicKey;
-    }
 
     public void setPublicKey(PublicKey publicKey) {
         this.publicKey = publicKey;
@@ -38,6 +41,10 @@ public class ConnectionOfClient {
         return socket;
     }
 
+    public BufferedWriter getWriter() {
+        return writer;
+    }
+
     public FilterOfClient getFilter() {
         return filter;
     }
@@ -48,3 +55,10 @@ public class ConnectionOfClient {
 
 
 }
+
+
+
+
+
+
+

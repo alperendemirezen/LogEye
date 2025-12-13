@@ -1,3 +1,5 @@
+package model;
+
 public class AlertMessage {
 
     private final String timestamp;
@@ -27,6 +29,14 @@ public class AlertMessage {
     }
     public String getSection(){
         return section;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
     }
 
 }

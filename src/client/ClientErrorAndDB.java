@@ -1,5 +1,9 @@
+package client;
+
+import model.FilterOfClient;
 
 public class ClientErrorAndDB extends Client{
+
     protected FilterOfClient createFilter() {
         FilterOfClient filter = new FilterOfClient();
         filter.addLevelFilter("ERROR");
@@ -20,3 +24,18 @@ public class ClientErrorAndDB extends Client{
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

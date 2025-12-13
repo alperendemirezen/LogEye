@@ -1,14 +1,25 @@
-import com.google.gson.Gson;
+package server;
 
-import javax.crypto.*;
+import com.google.gson.Gson;
+import model.ConnectionOfClient;
+import model.FilterOfClient;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.io.*;
-import java.net.*;
-import java.security.*;
-import java.security.spec.*;
-import java.util.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+import java.util.List;
 
 public class Server extends Thread {
 
+    private volatile boolean running = true;
     private List<ConnectionOfClient> connectedClients;
     private final int port;
 
@@ -24,7 +35,7 @@ public class Server extends Thread {
             ServerSocket serverSocket = new ServerSocket(port);
             System.out.println("Server started on port " + port + "...");
 
-            while (true) {
+            while (running) {
                 Socket socket = serverSocket.accept();
                 System.out.println("New client connected: " + socket.getRemoteSocketAddress());
 
@@ -53,12 +64,12 @@ public class Server extends Thread {
                 System.out.println("Client registered successfully.");
             }
         } catch (Exception e) {
-            System.err.println("Server error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private PublicKey readClientPublicKey(Socket socket) throws Exception {
+    // Read client's public key sent in Base64
+    public PublicKey readClientPublicKey(Socket socket) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String base64Key = br.readLine();
 
@@ -69,28 +80,39 @@ public class Server extends Thread {
         return keyFactory.generatePublic(spec);
     }
 
-    private SecretKey generateSecretKey() throws NoSuchAlgorithmException {
+    // Generate AES secret key
+    public SecretKey generateSecretKey() throws NoSuchAlgorithmException {
         KeyGenerator kg = KeyGenerator.getInstance("AES");
         kg.init(256);
         return kg.generateKey();
     }
 
-    private void sendSessionKey(Socket socket, String base64EncryptedKey) throws IOException {
+    // Send encrypted session key to client
+    public void sendSessionKey(Socket socket, String base64EncryptedKey) throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         bw.write(base64EncryptedKey);
         bw.newLine();
         bw.flush();
     }
 
+    // Encrypt data with client's public key
     public byte[] encryptWithPublicKey(byte[] data, PublicKey publicKey) throws Exception {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         return cipher.doFinal(data);
     }
 
-    private FilterOfClient parseFilter(String json) {
+    // Parse filter from JSON string
+    public FilterOfClient parseFilter(String json) {
         Gson gson = new Gson();
         FilterOfClient filter = gson.fromJson(json, FilterOfClient.class);
         return filter;
+    }
+
+    // Graceful shutdown
+    public void shutdown() {
+        System.out.println("Shutting down Server...");
+        running = false;
+        this.interrupt();
     }
 }

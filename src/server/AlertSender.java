@@ -1,10 +1,14 @@
-import com.google.gson.Gson;
+package server;
 
-import javax.crypto.*;
+import com.google.gson.Gson;
+import model.AlertMessage;
+import model.ConnectionOfClient;
+
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
-import java.security.*;
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -12,6 +16,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class AlertSender extends Thread {
 
+    private volatile boolean running = true;
     private final Gson gson = new Gson();
     private final BlockingQueue<AlertMessage> alertMessages;
     private final List<ConnectionOfClient> connectedClients;
@@ -23,15 +28,15 @@ public class AlertSender extends Thread {
 
     @Override
     public void run(){
-
+        // Main loop to send alerts to clients
         System.out.println("AlertSender started...");
-        while(true){
+        while (running) {
             AlertMessage alert = null;
 
             try {
                 alert = alertMessages.take();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
 
             for(ConnectionOfClient client: connectedClients){
@@ -41,20 +46,22 @@ public class AlertSender extends Thread {
 
                         String encryptedJson = encrypt(json, client.getSessionKey());
 
-                        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(client.getOut()));
+                        BufferedWriter bw = client.getWriter();
                         bw.write(encryptedJson);
                         bw.newLine();
                         bw.flush();
 
                     } catch (Exception e){
                         e.printStackTrace();
+                        connectedClients.remove(client);
                     }
                 }
             }
         }
     }
 
-    private String encrypt(String plainText, SecretKey key) throws Exception{
+    // Encrypts the plainText using AES encryption with the provided SecretKey
+    public String encrypt(String plainText, SecretKey key) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
@@ -69,6 +76,12 @@ public class AlertSender extends Thread {
         System.arraycopy(encrypted, 0, combined, iv.length, encrypted.length);
 
         return Base64.getEncoder().encodeToString(combined);
+    }
+
+    public void shutdown() {
+        System.out.println("Shutting down AlertSender...");
+        running = false;
+        this.interrupt();
     }
 
 }

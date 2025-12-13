@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +29,25 @@ public class FilterOfClient {
     }
 
     public boolean matches(AlertMessage message) {
+        if (message == null) return false;
         boolean levelMatch = levels.isEmpty() || levels.contains(message.getLevel());
         boolean sectionMatch = sections.isEmpty() || sections.contains(message.getSection());
 
         return levelMatch && sectionMatch;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
